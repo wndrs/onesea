@@ -5,6 +5,8 @@ margin-top: 40px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+ 
+
 }
 
 .logo{
@@ -12,7 +14,7 @@ margin-top: 40px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 70vw;
+
 
 
   -webkit-animation: fadein 4s; /* Safari, Chrome and Opera > 12.1 */
@@ -21,6 +23,7 @@ margin-top: 40px;
     -o-animation: fadein 4s; /* Opera < 12.1 */
        animation: fadein 4s;
 }
+
 
 
 
@@ -55,6 +58,37 @@ margin-top: 40px;
     to   { opacity: 1; }
 }
 
+/* //////////////  */
+
+
+@keyframes fade {
+  from { opacity: 0; }
+  to   { opacity: .8; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fade {
+  from { opacity: 0; }
+  to   { opacity: .8; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fade {
+  from { opacity: 0; }
+  to   { opacity: .8; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fade {
+  from { opacity: 0; }
+  to   { opacity: .8; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fade {
+  from { opacity: 0; }
+  to   { opacity: .8; }
+}
 
 .popUp{
   position: absolute;
@@ -68,13 +102,51 @@ margin-top: 25vh;
   border-radius: 0;
   border: 0;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
   font-family: 'Courier New', Courier, monospace;
   line-height: 1.9;
+
+  -webkit-animation: fade 2s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fade 2s; /* Firefox < 16 */
+   -ms-animation: fade 2s; /* Internet Explorer */
+    -o-animation: fade 2s; /* Opera < 12.1 */
+       animation: fade 2s;
 }
+
+.popUp2{
+  position: absolute;
+  text-align: center;
+  background-color: #a03636;
+  opacity: .8;
+margin-top: 25vh;
+  color: rgb(255, 255, 255);
+  width: 500px;
+  height: 500px;
+  border-radius: 0;
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Courier New', Courier, monospace;
+  line-height: 1.9;
+  
+
+ 
+}
+
 
 .flex{
   display: flex;
   justify-content: center;
+}
+
+
+.classdutexte {
+  color: white;
+}
+ 
+.classdutexte:hover {
+  color:black;
+  cursor: pointer;
 }
