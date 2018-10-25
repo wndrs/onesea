@@ -3,3 +3,4 @@ export default {
     authDomain: "contactform-d799f.firebaseapp.com",
     databaseURL: "https://contactform-d799f.firebaseio.com",
   };
+  

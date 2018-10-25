@@ -5,11 +5,17 @@ import photo2 from "./image/photo2.jpg"
 import photo3 from "./image/photo3.jpg"
 import photo4 from "./image/photo4.jpg"
 import photo5 from "./image/photo5.jpg"
-import HoverImage from "react-hover-image"
-import logo from "./image/logo.png"
-import logoblack from "./image/logoblack.png"
-import * as firebase from "firebase"
+import photo6 from "./image/photo6.jpg"
+import photo7 from "./image/photo7.jpg"
+import photo9 from "./image/photo9.jpg"
+import photo22 from "./image/photo22.jpg"
+import photo11 from "./image/photo11.jpg"
+import photo12 from "./image/photo12.jpg"
+import photo19 from "./image/photo19.jpg"
+import logo from "./image/Bleu.png"
 import config from "./config"
+import * as firebase from "firebase"
+
 
 
 class App extends Component {
@@ -17,7 +23,6 @@ class App extends Component {
     super();
 
     this.state = {
-      speed: 3000,
       value: ''
 
     }
@@ -25,74 +30,34 @@ class App extends Component {
     firebase.initializeApp(config)
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange2 = this.handleChange2.bind(this);
+
 
   }
 
-  componentWillMount() {
-    this.changetoimage1()
+  componentDidMount() {
+    setTimeout(this.popUp, 5000)
   }
 
-
-  changetoimage1 = () => {
-    this.setState({ photo: photo1 })
-    setTimeout(this.changetoimage2, this.state.speed)
-  }
-  changetoimage2 = () => {
-    this.setState({ photo: photo2 })
-    setTimeout(this.changetoimage3, this.state.speed)
+  popUp = () => {
+    this.setState({ popUp: true })
 
   }
-  changetoimage3 = () => {
-    this.setState({ photo: photo3 })
-    setTimeout(this.changetoimage4, this.state.speed)
-  }
-  changetoimage4 = () => {
-    this.setState({ photo: photo4 })
-    setTimeout(this.changetoimage5, this.state.speed)
-  }
-  changetoimage5 = () => {
-    this.setState({ photo: photo5 })
-    setTimeout(this.changetoimage1, this.state.speed)
-  }
 
-  handleClick = () => {
-    this.setState({ logoOff: true })
-  }
-  handleClickoff = () => {
-
-    if (this.state.logoOff === true) {
-      this.setState({
-        logoOff: false,
-        touch: false,
-        messageOn: false
-      })
-    }
+  closePopUp = () => {
+    this.setState({ popUp: false })
 
   }
-  getTouch = () => {
 
-
-    this.setState({ touch: true, })
-
-  }
 
   handleChange(event) {
 
-   
- 
+
+
     this.setState({ email: event.target.value });
 
 
   }
-  handleChange2(e) {
-    this.setState({ message: e.target.value,
-    
-     });
-    
 
-
-  }
   handleSubmit(event) {
 
     var clean = this.state.email.replace(".", '')
@@ -104,32 +69,19 @@ class App extends Component {
     var clean6 = clean5.replace(".", '')
     var clean7 = clean6.replace(".", '')
     var clean8 = clean7.replace(".", '')
-    
+
 
     var database = firebase.database()
-    database.ref('email list/' +  clean8  ).set({
+    database.ref('email list/' + clean8).set({
       "email": this.state.email
     })
-  
-    if (this.state.messageOn === true) {
-      database.ref('message list/' + clean8 + '/messages/' + this.state.random).set({
-        "email": this.state.email,
-        "message": this.state.message
-      })
-    }
 
 
-    this.handleClickoff()
-    event.preventDefault();
-  }
-
-  leaveMess = () => {
-
-
-    this.setState({ messageOn: true,
-    random: Math.floor(Math.random() * 1000000) + 2})
+    this.closePopUp()
 
   }
+
+
 
 
 
@@ -137,29 +89,14 @@ class App extends Component {
   render() {
     return (
 
-      <div >
-        {!this.state.logoOff && <div className="logo" onClick={this.handleClick}>
-
-          <HoverImage
-            src={logo}
-            hoverSrc={logoblack}
-            style={{ width: 650 }}
-
-          />
-        </div>
-
-
-        }
-        {this.state.logoOff && <div className="flex">
-          {!this.state.touch && <div className="popUp">Sustainable swimwear <br />
-            Made from regenerated ocean plastic waste. <br />
-            ~ For the love of the sea ~<br />
-            Soon available for pre-orders. <br />
-            <a className="classdutexte" onClick={this.getTouch}>Get in touch</a>  </div>}
-
-          {this.state.touch && <div className="popUp2">
-            Get news when the first collection is out<br />
-            Get 15% discount
+      <div>
+        {this.state.popUp && <div className="flex">
+          <div className="popUp">       COMING SOON! <br />
+            Sustainable swimsuits for her. <br />
+            Timeless, elegant & functional designs <br />
+            made of high end recycled fabrics. <br />
+            Join our community to be the first to know <br />
+            about pre orders launch & all the good stuff. <br />
             <form onSubmit={this.handleSubmit}>
 
               <input
@@ -169,30 +106,127 @@ class App extends Component {
               />
 
 
-              {this.state.messageOn && <div >
-                <input
-                  onChange={this.handleChange2}
-                  placeholder="message"
-                  type="texte"
-
-                />
-              </div>}
               <div className="btn-group">
 
                 <input type="submit" value="Submit" />
               </div>
             </form>
-            {!this.state.messageOn && <a className="classdutexte" onClick={this.leaveMess}>leave a message</a>}
 
 
-          </div>}
+            <div onClick={this.closePopUp} className="exit">x </div>
+          </div>
+
+
+
+
 
 
         </div>}
 
-        <img src={this.state.photo} className="photo" onClick={this.handleClickoff} />
-      </div>
 
+
+
+        <div className="logoBgr" >
+          <div  className="logoHover" onClick={this.popUp}>
+            <img src={logo}  className="imageLogo" alt="" />
+
+          </div>
+        </div>
+        <section className="gallery">
+          <div className="container">
+            <div className="grid">
+              <div className="column-xs-8 column-md-8">
+
+
+                <figure className="img-container">
+                  <img src={photo22} alt="" />
+                </figure>
+
+              </div>
+
+              <div className="column-xs-4 column-md-4">
+
+
+                <figure className="img-container">
+                  <img src={photo12} alt="" />
+                </figure>
+
+              </div>
+
+
+              <div className="column-xs-4 column-md-4">
+                <figure className="img-container">
+                  <img src={photo2} alt="" />
+
+                </figure>
+              </div>
+              <div className="column-xs-8 column-md-8">
+                <figure className="img-container">
+                  <img src={photo3} alt="" />
+
+                </figure>
+              </div>
+              <div className="column-xs-6 column-md-6">
+                <figure className="img-container">
+                  <img src={photo4} alt="" />
+
+
+                </figure>
+              </div>
+              <div className="column-xs-6 column-md-6">
+                <figure className="img-container">
+                  <img src={photo5} alt="" />
+
+                </figure>
+              </div>
+              <div className="column-xs-12">
+                <figure className="img-container">
+                  <img src={photo6} alt="" />
+
+                </figure>
+              </div>
+              <div className="column-xs-6 column-md-6">
+                <figure className="img-container">
+                  <img src={photo7} alt="" />
+
+
+                </figure>
+              </div>
+              <div className="column-xs-6 column-md-6">
+                <figure className="img-container">
+                  <img src={photo9} alt="" />
+
+                </figure>
+              </div>
+
+              <div className="column-xs-12 ">
+                <figure className="img-container">
+                  <img src={photo11} alt="" />
+
+                </figure>
+              </div>
+
+
+              <div className="column-xs-4 column-md-4">
+                <figure className="img-container">
+                  <img src={photo1} alt="" />
+
+
+                </figure>
+              </div>
+              <div className="column-xs-8 column-md-8">
+                <figure className="img-container">
+                  <img src={photo19} alt="" />
+
+                </figure>
+              </div>
+
+
+
+            </div>
+          </div>
+        </section>
+      </div>
     );
   }
 }
