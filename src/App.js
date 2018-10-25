@@ -34,6 +34,7 @@ class App extends Component {
 
   }
 
+  
   componentDidMount() {
     setTimeout(this.popUp, 5000)
   }
